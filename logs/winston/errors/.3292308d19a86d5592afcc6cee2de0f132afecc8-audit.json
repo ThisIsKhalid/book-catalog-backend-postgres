@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "D:\\Level-2\\book-catalog-backend-postgres\\logs\\winston\\errors\\.3292308d19a86d5592afcc6cee2de0f132afecc8-audit.json",
+    "files": [
+        {
+            "date": 1693843961633,
+            "name": "D:\\Level-2\\book-catalog-backend-postgres\\logs\\winston\\errors\\phu-2023-04-09-22-error.log",
+            "hash": "b2102e11267bde4a0ec703f872046fc0f0ca5bcf56e8a8fc421fa7bfcbf6ccb3"
+        }
+    ],
+    "hashType": "sha256"
+}
