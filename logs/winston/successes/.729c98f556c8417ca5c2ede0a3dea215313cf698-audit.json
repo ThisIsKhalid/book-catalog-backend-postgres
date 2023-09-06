@@ -24,6 +24,16 @@
             "date": 1693897271064,
             "name": "D:\\Level-2\\book-catalog-backend-postgres\\logs\\winston\\successes\\phu-2023-05-09-13-success.log",
             "hash": "c9cfea32a2f0bc017909d3123e5c744e2905e4c8793e6ed29dcad6315a4ba8c2"
+        },
+        {
+            "date": 1693974911450,
+            "name": "D:\\Level-2\\book-catalog-backend-postgres\\logs\\winston\\successes\\phu-2023-06-09-10-success.log",
+            "hash": "f2cebadcff24ec8d49cd2f686ab501006872fda82f27657d638f31e01367e6f5"
+        },
+        {
+            "date": 1693977292151,
+            "name": "D:\\Level-2\\book-catalog-backend-postgres\\logs\\winston\\successes\\phu-2023-06-09-11-success.log",
+            "hash": "d2026e15a2ecf140f03fad94fe4756947f2c9c29535acadd3d8e5f0b09e0a2b9"
         }
     ],
     "hashType": "sha256"
