@@ -34,6 +34,26 @@
             "date": 1693977292158,
             "name": "D:\\Level-2\\book-catalog-backend-postgres\\logs\\winston\\errors\\phu-2023-06-09-11-error.log",
             "hash": "2b0bfe0e06c3fa6a2de01b2447c634f1602e7e3bfcc6d111175a5005c253e016"
+        },
+        {
+            "date": 1693988081696,
+            "name": "D:\\Level-2\\book-catalog-backend-postgres\\logs\\winston\\errors\\phu-2023-06-09-14-error.log",
+            "hash": "4bf6478bf06d6e6ce96bbcdc7a2a90c1fb3963446b22114529bcee1c25a9773a"
+        },
+        {
+            "date": 1694005417193,
+            "name": "D:\\Level-2\\book-catalog-backend-postgres\\logs\\winston\\errors\\phu-2023-06-09-19-error.log",
+            "hash": "c5a2a4b52944e8070551e4932abb9952c8bf867c6275673ba9afa1e989ce87ca"
+        },
+        {
+            "date": 1694008828081,
+            "name": "D:\\Level-2\\book-catalog-backend-postgres\\logs\\winston\\errors\\phu-2023-06-09-20-error.log",
+            "hash": "86b28900802d3b51e6bb438a0dd2c24d9d5037cfdf827d016ac26c72ddd6ff01"
+        },
+        {
+            "date": 1694012402719,
+            "name": "D:\\Level-2\\book-catalog-backend-postgres\\logs\\winston\\errors\\phu-2023-06-09-21-error.log",
+            "hash": "551a12e3f89ec2d4b9873d60782c4b609bb8bdccf77b03c564d7d47c6e75ae90"
         }
     ],
     "hashType": "sha256"
