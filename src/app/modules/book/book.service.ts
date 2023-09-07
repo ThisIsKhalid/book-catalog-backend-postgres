@@ -1,4 +1,6 @@
 import { Book, Prisma } from '@prisma/client';
+import httpStatus from 'http-status';
+import ApiError from '../../../errors/ApiError';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
@@ -150,6 +152,20 @@ const getBooksByCategory = async (
   };
 };
 
+const getSingleBook = async (id: string): Promise<Book> => {
+  const result = await prisma.book.findUnique({
+    where: {
+      id,
+    },
+  });
+
+  if (!result) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Book does not exist!');
+  }
+
+  return result;
+};
+
 const updateBook = async (
   id: string,
   payload: Partial<Book>
@@ -180,4 +196,5 @@ export const BookService = {
   updateBook,
   deleteBook,
   getBooksByCategory,
+  getSingleBook
 };
