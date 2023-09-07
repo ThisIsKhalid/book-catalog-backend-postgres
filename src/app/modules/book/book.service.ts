@@ -24,8 +24,6 @@ const getAllBooks = async (
   const { limit, page, skip } = paginationHelpers.calculatePagination(options);
   const { searchTerm, category, maxPrice, minPrice, ...filterData } = filters;
 
-  console.log(minPrice, maxPrice);
-
   const andConditions = [];
 
   if (searchTerm) {
@@ -110,6 +108,48 @@ const getAllBooks = async (
   };
 };
 
+const getBooksByCategory = async (
+  id: string,
+  options: IPaginationOptions
+): Promise<IGenericResponse<Book[]>> => {
+  const { limit, page, skip } = paginationHelpers.calculatePagination(options);
+
+  const result = await prisma.book.findMany({
+    include: {
+      category: true,
+    },
+    where: {
+      categoryId: id,
+    },
+    skip,
+    take: limit,
+    orderBy:
+      options.sortBy && options.sortOrder
+        ? { [options.sortBy]: options.sortOrder }
+        : {
+            createdAt: 'desc',
+          },
+  });
+
+  const total = await prisma.book.count({
+    where: {
+      categoryId: id,
+    },
+  });
+
+  const totalPage = Math.ceil(total / limit);
+
+  return {
+    meta: {
+      total,
+      totalPage,
+      page,
+      limit,
+    },
+    data: result,
+  };
+};
+
 const updateBook = async (
   id: string,
   payload: Partial<Book>
@@ -139,4 +179,5 @@ export const BookService = {
   getAllBooks,
   updateBook,
   deleteBook,
+  getBooksByCategory,
 };

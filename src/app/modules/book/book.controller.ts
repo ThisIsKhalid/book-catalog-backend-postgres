@@ -34,6 +34,25 @@ const getAllBooks = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getBooksByCategory = catchAsync(async (req: Request, res: Response) => {
+  const categoryId = req.params.categoryId;
+  // console.log(categoryId);
+ 
+  const options = pick(req.query, ['limit', 'page', 'sortBy', 'sortOrder']);
+
+  const result = await BookService.getBooksByCategory(categoryId,options);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Books with associated category data fetched successfully',
+    meta: result.meta,
+    data: result.data,
+  });
+});
+
+
+
 const updateBook = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
   const data = req.body;
@@ -64,4 +83,5 @@ export const BookController = {
   getAllBooks,
   updateBook,
   deleteBook,
+  getBooksByCategory
 };
