@@ -9,6 +9,7 @@ const createOrder = catchAsync(async (req: Request, res: Response) => {
   const {userId} = user!;
   const data = req.body;
 
+
     const result = await OrderService.createOrder(userId,data);
 
     sendResponse(res, {

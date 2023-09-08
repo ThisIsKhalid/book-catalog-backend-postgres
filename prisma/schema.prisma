@@ -55,7 +55,7 @@ model Book {
   category         Category          @relation(fields: [categoryId], references: [id])
   categoryId       String
   reviewAndRatings ReviewAndRating[]
-  orderedBooks      OrderedBook[]
+  orderedBooks     OrderedBook[]
 
   @@map("books")
 }
@@ -63,7 +63,7 @@ model Book {
 model ReviewAndRating {
   id        String   @id @default(uuid())
   review    String
-  rating    Int 
+  rating    Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -106,6 +106,9 @@ model OrderedBook {
   book     Book   @relation(fields: [bookId], references: [id])
   bookId   String
   quantity Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("orderedBooks")
 }

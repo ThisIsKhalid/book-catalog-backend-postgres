@@ -4,7 +4,6 @@ import prisma from '../../../shared/prisma';
 import { IOrder } from './order.interface';
 
 const createOrder = async (id: string, data: IOrder) => {
-
   const isUserExist = await prisma.user.findUnique({
     where: {
       id,
@@ -16,28 +15,46 @@ const createOrder = async (id: string, data: IOrder) => {
   }
 
   const newOrder = await prisma.$transaction(async transactionClient => {
-    const orderData = {
-      userId: id,
-    };
-
-    const order = await transactionClient.order.create({
-      data: orderData,
+    const isOrderExist = await transactionClient.order.findFirst({
+      where: {
+        userId: id,
+      },
     });
 
-    if (!order) {
-      throw new ApiError(httpStatus.BAD_REQUEST, 'Unable to create order.');
+    if (!isOrderExist) {
+      const orderData = {
+        userId: id,
+      };
+      const newOrderData = await transactionClient.order.create({
+        data: orderData,
+      });
+
+      const creatingOrderedBook = await transactionClient.orderedBook.create({
+        data: {
+          orderId: newOrderData.id,
+          bookId: data.bookId,
+          quantity: data.quantity,
+        },
+      });
+
+      if (!newOrderData && !creatingOrderedBook) {
+        throw new ApiError(
+          httpStatus.BAD_REQUEST,
+          'Unable to create Order and OrderedData'
+        );
+      }
+      return newOrderData;
+    } else {
+      const creatingOrderedBook = await transactionClient.orderedBook.create({
+        data: {
+          orderId: isOrderExist.id,
+          bookId: data.bookId,
+          quantity: data.quantity,
+        },
+      });
+
+      return isOrderExist;
     }
-
-    const orderedBookData = {
-      orderId: order.id,
-      ...data,
-    };
-
-    const orderedBooks = await transactionClient.orderedBook.create({
-      data: orderedBookData,
-    });
-
-    return order;
   });
 
   if (newOrder) {
@@ -50,10 +67,13 @@ const createOrder = async (id: string, data: IOrder) => {
       },
     });
 
-    return result
+    return result;
   }
 
-  throw new ApiError(httpStatus.BAD_REQUEST, 'Unable to create Order and OrderedData');
+  throw new ApiError(
+    httpStatus.BAD_REQUEST,
+    'Unable to create Order and OrderedData'
+  );
 };
 
 export const OrderService = {
