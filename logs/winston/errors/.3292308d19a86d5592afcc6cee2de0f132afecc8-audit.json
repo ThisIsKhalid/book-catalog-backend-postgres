@@ -89,6 +89,11 @@
             "date": 1694188834507,
             "name": "D:\\Level-2\\book-catalog-backend-postgres\\logs\\winston\\errors\\phu-2023-08-09-22-error.log",
             "hash": "1ae610e9ecba65136ab492d1fd5eef50c39d72b17727f2e759c0d4991a4cbdc0"
+        },
+        {
+            "date": 1694323791343,
+            "name": "D:\\Level-2\\book-catalog-backend-postgres\\logs\\winston\\errors\\phu-2023-10-09-11-error.log",
+            "hash": "17fa3de8102efa655ff0336949f4d3cbbd1a38e7bba65f762113f8a84500cfd6"
         }
     ],
     "hashType": "sha256"
