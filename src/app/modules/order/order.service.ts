@@ -1,3 +1,4 @@
+import { Order } from '@prisma/client';
 import httpStatus from 'http-status';
 import ApiError from '../../../errors/ApiError';
 import prisma from '../../../shared/prisma';
@@ -76,7 +77,7 @@ const createOrder = async (id: string, data: IOrder) => {
   );
 };
 
-const getAllOrders = async (userId: string, role: string) => {
+const getAllOrders = async (userId: string, role: string): Promise<Order[]> => {
   console.log(userId, role);
 
   if (role === 'customer') {
@@ -100,7 +101,46 @@ const getAllOrders = async (userId: string, role: string) => {
   }
 };
 
+const getSingleOrder = async (
+  userId: string,
+  role: string,
+  orderId: string
+) => {
+  if (role === 'customer') {
+    const result = await prisma.order.findUnique({
+      where: {
+        id: orderId,
+        userId,
+      },
+      include: {
+        orderedBooks: true,
+      },
+    });
+
+    if (!result) {
+      throw new ApiError(httpStatus.NOT_FOUND, "You haven't placed any order");
+    }
+
+    return result;
+  } else {
+    const result = await prisma.order.findUnique({
+      where: {
+        id: orderId,
+      },
+      include: {
+        orderedBooks: true,
+      },
+    });
+
+     if (!result) {
+       throw new ApiError(httpStatus.NOT_FOUND, "Order does not exist");
+     }
+    return result;
+  }
+};
+
 export const OrderService = {
   createOrder,
   getAllOrders,
+  getSingleOrder,
 };

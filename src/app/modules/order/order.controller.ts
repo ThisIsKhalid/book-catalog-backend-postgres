@@ -33,7 +33,23 @@ const getAllOrders = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getSingleOrder = catchAsync(async (req: Request, res: Response) => {
+  const orderId = req.params.orderId
+  const user = req.user;
+  const { userId, role } = user!;
+
+  const result = await OrderService.getSingleOrder(userId, role, orderId);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Order fetched Successfully',
+    data: result,
+  });
+});
+
 export const OrderController = {
   createOrder,
   getAllOrders,
+  getSingleOrder
 };
