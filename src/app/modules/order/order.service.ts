@@ -46,6 +46,7 @@ const createOrder = async (id: string, data: IOrder) => {
       }
       return newOrderData;
     } else {
+      // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
       const creatingOrderedBook = await transactionClient.orderedBook.create({
         data: {
           orderId: isOrderExist.id,
