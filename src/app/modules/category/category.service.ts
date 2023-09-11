@@ -15,6 +15,19 @@ const getAllCategory = async (): Promise<Category[]> => {
   return result;
 };
 
+const getSingleCategory = async (id: string): Promise<Category | null> => {
+  const result = await prisma.category.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      books: true,
+    },
+  });
+
+  return result;
+};
+
 const updateCategory = async (
   id: string,
   payload: Partial<Category>
@@ -43,5 +56,6 @@ export const CategoryService = {
   createCategory,
   getAllCategory,
   updateCategory,
-  deleteCategory
+  deleteCategory,
+  getSingleCategory,
 };

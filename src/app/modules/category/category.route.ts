@@ -14,10 +14,13 @@ router.post(
   CategoryController.createCategory
 );
 
+router.get('/:id', CategoryController.getSingleCategory);
+
 router.get('/', CategoryController.getAllCategory);
 
 router.patch(
   '/:id',
+  auth(ENUM_USER_ROLE.ADMIN),
   validateRequest(CategoryValidation.updateCategoryZodSchema),
   CategoryController.updateCategory
 );
