@@ -31,10 +31,10 @@ const userLogin = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void
     const data = req.body;
     const result = yield auth_service_1.AuthService.userLogin(data);
     (0, sendResponse_1.default)(res, {
-        statusCode: http_status_1.default.OK,
         success: true,
+        statusCode: http_status_1.default.OK,
         message: 'User Logged in Successfully',
-        data: result,
+        token: result,
     });
 }));
 exports.AuthController = {
