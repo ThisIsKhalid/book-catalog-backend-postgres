@@ -21,10 +21,10 @@ const userLogin = catchAsync(async (req: Request, res: Response) => {
   const result = await AuthService.userLogin(data);
 
   sendResponse(res, {
-    statusCode: httpStatus.OK,
     success: true,
+    statusCode: httpStatus.OK,
     message: 'User Logged in Successfully',
-    data: result,
+    token: result,
   });
 });
 
