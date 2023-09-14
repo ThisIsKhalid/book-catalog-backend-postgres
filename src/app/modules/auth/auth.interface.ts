@@ -3,6 +3,6 @@ export type ILoginUserData = {
   password: string;
 };
 
-export type ILoginUserResponse = {
+export type ILoginResponse = {
   accessToken: string;
 };

@@ -6,6 +6,7 @@
 #### User
 
 - https://book-catalog-backend-postgres-eight.vercel.app/api/v1/auth/signup (POST)
+- https://book-catalog-backend-postgres-eight.vercel.app/api/v1/auth/signin (POST)
 - https://book-catalog-backend-postgres-eight.vercel.app/api/v1/users (GET)
 - https://book-catalog-backend-postgres-eight.vercel.app/api/v1/users/d90018eb-c098-4410-b436-020f1d895b2c (Single GET) Include an id that is saved in your database
 - https://book-catalog-backend-postgres-eight.vercel.app/api/v1/users/d90018eb-c098-4410-b436-020f1d895b2c (PATCH)
